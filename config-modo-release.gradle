@@ -1,0 +1,26 @@
+android {
+    buildTypes {
+        debug { // "Alma de Release" para o JStudio
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+            // CORREÇÃO: O parêntese deve fechar depois de todos os arquivos de Proguard
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    packaging {
+        resources {
+            // CORREÇÃO: Faltava uma vírgula após o "/META-INF/**"
+            def lixoDeMetadados = [
+                "/META-INF/**",
+                "/*.txt",
+                "/DebugProbesKt.bin",
+                "/kotlin/**",
+                "/kotlin-tooling-metadata.json"
+            ]
+            
+            excludes += lixoDeMetadados
+        }
+    }
+}

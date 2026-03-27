@@ -1,0 +1,32 @@
+android {
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+        }
+    }
+    
+    // CONFIGURAÇÕES EXCLUSIVAS PARA VELOCIDADE NO JSTUDIO (DEBUG)
+    aaptOptions {
+        cruncherEnabled = false // Pula a otimização de imagens para ganhar tempo
+    }
+    
+    buildFeatures {
+        buildConfig = false 
+    }
+
+    androidResources {
+        // CORREÇÃO: Adicionado vírgulas entre as extensões
+        noCompress 'txd', 'dff', 'col' 
+    }
+
+    packaging {
+        resources {
+            excludes += [
+                "/META-INF/{AL2.0,LGPL2.1}", 
+                "/META-INF/DEPENDENCIES"
+            ]
+        }
+    }
+} // Esta é a ÚNICA chave que fecha o bloco android
